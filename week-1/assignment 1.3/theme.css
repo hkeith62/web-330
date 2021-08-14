@@ -35,6 +35,10 @@ body.dark-theme h4 {
 body.dark-theme a {
 	color: #fff;
 }
+body.dark-theme a:hover {
+	background-color: #303030;
+    color: #d176e1;
+}
 h1, h2, h3, h4 {
 
 /* Styling of the main headings. */
@@ -57,6 +61,7 @@ a:hover {
     background-color: #D6A800;
     color:  #4F3674;
 } 
+
 .card {  /* Card styling */
 	padding: 8px 0 4px 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
