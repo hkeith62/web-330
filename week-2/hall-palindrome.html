@@ -24,8 +24,7 @@
 <body class= "light-theme">
     <!-- This is the card container. -->
     <div class="assign-container">
-	
-        <h1 class= "app-header">Welcome to the Palindrome App!</h1>
+        <h1 id= "app-header">Welcome to the Palindrome App!</h1>
 		<!-- This is a card content container. -->
         <div class="assign-content">
             <!-- The card with its' title and content -->
@@ -57,9 +56,11 @@
 				    <div id= "assign-results-header"></div>
 				    <div id= "assign-results" class="card-content assign-results-text"></div>
 		    </div>
-		    <a href="../index.html">Return</a>
+		    <div id= "return-home-container">
+	    <a href= "../index.html" class="return-home">Return</a>
+	</div> 
         </div>        
-    </div>
+</div>
 <script>
 function getTodaysDate() {
   var date = new Date(); // today, now
@@ -72,10 +73,9 @@ function reverse(str) {
   var string = str.split("").reverse().join(""); 
   return string
 }
-function isPalindrome(str) {
-  reverse(str);
-  
-    if (reverse(str) === str) {
+function isPalindrome(str, reverse) {
+   
+    if (reverse(str.toLowerCase()) === str.toLowerCase()) {
     return true;
     }
    
@@ -92,7 +92,14 @@ document.getElementById('btnCheckPhrase').onclick = function myFunction() {
   const len = txtPhrase.length;
   const header = "Date: " + today + "<br>" + "Original Phrase: " + txtPhrase + "<br>" + "Reversed Phrase: " + reversePhrase + "<br>" + "Phrase Length: " + len;
   document.getElementById("assign-results-header").innerHTML = header;
-  document.getElementById('assign-results').innerHTML = isPalindrome("racecar"); 
+  
+  if(isPalindrome(txtPhrase, reverse) === true) {
+  document.getElementById("assign-results").innerHTML = txtPhrase + " <b><u>is</u></b> a palindrome!";
+  }
+  
+  else {
+  document.getElementById("assign-results").innerHTML = txtPhrase + " <b><u>is not</u></b> a palindrome!";
+  }
 } 
 </script>
 </body>

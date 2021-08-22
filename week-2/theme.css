@@ -101,12 +101,12 @@ a:hover {
     color: #4F3674;
 }
 .input {
-	padding: 12px 20px;
-    margin: 8px 0;
+	padding: 12px 22px;
+    margin: 15px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 /* Select Menu styling */
 .drop-down-menu {
@@ -117,4 +117,17 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+#btnCheckPhrase {
+	width: 100%;
+	padding: 16px;  
+	background-color: #4F3674;
+    color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	border-radius: 4px;
+}
+#btnCheckPhrase:hover {
+	background-color: #D6A800;
+    color: #4F3674;
 }
