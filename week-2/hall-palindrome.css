@@ -1,0 +1,26 @@
+/**
+    Title: WEB 330 – Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 08/22/2021
+    Modified By: Professor  P. Itskovich, Keith Hall 
+    Description: This is the style sheet for wthe palindrome app.   
+*/
+body {
+	overflow: hidden;
+}
+.assign-container {       /* This is the card container */
+	margin-top: -38px;
+}
+#assign-results-header {
+	font-size: 16px;
+	font-weight: 400;
+}
+#app-header {                /* H1 heading. */
+	text-align: center;
+}
+#return-home-container {
+    margin-top: 18px;
+}
+.form-field {
+	margin-left: 20px;
+}

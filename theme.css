@@ -1,9 +1,9 @@
 /**
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Krasso
-    Date: 05/30/2021
+    Date: 08/22/2021
     Modified By: Professor  P. Itskovich, Keith Hall 
-    Description: This is a css style sheet for website themes and web-330 assignments and upcoming projects.   
+    Description: This is a css style sheet for website themes, assignments, and upcoming projects.   
 */
 body {
     font-family: Oswald, Verdana, Arial, sans-serif;
@@ -12,6 +12,7 @@ body.light-theme {
 	color: #000;
     background-color: #fff;
 }
+/* Dark theme styling */
 body.dark-theme {
 	color: #fafafa;
 	background-color: #303030;
@@ -46,6 +47,7 @@ h1, h2, h3, h4 {
     color: #fff; 
     border: 1px solid #D6A800;
     padding: 10px;
+	width: 100%;
 }
 /* Link styles. */
 a {
@@ -71,7 +73,7 @@ a:hover {
 }
 .card-title {
 	text-align: center;
-    font-size: 2em;
+    font-size: 2.3em;
     color: #4F3674;
     font-weight: 400;
 }
@@ -117,4 +119,18 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+/* Palindrome check phrase button styling */
+#btnCheckPhrase {
+	width: 100%;
+	padding: 16px;  
+	background-color: #4F3674;
+    color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	border-radius: 4px;
+}
+#btnCheckPhrase:hover {
+	background-color: #D6A800;
+    color: #4F3674;
 }

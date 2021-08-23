@@ -9,23 +9,24 @@
 <html lang="en"> 
 <head>
     <meta charset="UTF-8" /> 
+	<title>WEB 330 – Enterprise JavaScript II</title>
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
     <meta name="keywords" content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
     <meta name="robots" content="nofollow" />
     <meta name="author" content="Keith Hall" />
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="site.css" />
+	 <link rel="stylesheet" href="hall-palindrome.css" />
+    <link rel="stylesheet" href="../theme.css" />
+    <link rel="stylesheet" href="../site.css" />
     <!-- Google fonts for Oswald -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
 	<!-- Font Awesome-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="application/javascript" src="../theme.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="../theme.js"></script>
 </head>
 <body class= "light-theme">
     <!-- This is the card container. -->
     <div class="assign-container">
-        <h1 id= "app-header">Welcome to the Palindrome App!</h1>
-		<!-- This is a card content container. -->
+    <h1 id= "app-header">Welcome to the Palindrome App!</h1>
         <div class="assign-content">
             <!-- The card with its' title and content -->
             <div class="card">
@@ -46,7 +47,6 @@
     </div>
 	 <!-- This is the results card container. -->
 	<div class="assign-container">
-         
 		<!-- This is the results card content container. -->
         <div class="assign-content">
             <!-- The card with its' title and content -->
@@ -62,20 +62,20 @@
         </div>        
 </div>
 <script>
-function getTodaysDate() {
-  var date = new Date(); // today, now
+function getTodaysDate() {       // This function returns a new date in US based format.
+  var date = new Date(); 
   return date.toLocaleDateString("en-US"); 
 }
-function getLength(radar) {    
+function getLength(radar) {     // This function returns the length of a srting.
   return radar.length;
 }
-function reverse(str) {
+function reverse(str) {        // This splits a sting to an array, reverses it, and converts it back to an array.
   var string = str.split("").reverse().join(""); 
   return string
 }
-function isPalindrome(str, reverse) {
+function isPalindrome(str, reverse) {  //Returns true if the results from reverse() equals the string parameter. 
    
-    if (reverse(str.toLowerCase()) === str.toLowerCase()) {
+    if (reverse(str.toLowerCase()) === str.toLowerCase()) { // Conditional that also converts string to lower case.
     return true;
     }
    
@@ -85,11 +85,12 @@ function isPalindrome(str, reverse) {
 }
 document.getElementById('btnCheckPhrase').onclick = function myFunction() {
 
-  const txtPhrase = document.getElementById("txtPhrase").value;
+  const txtPhrase = document.getElementById("txtPhrase").value;  // Binds the input value.
   const assignResults = document.getElementById("assign-results");
   const today = getTodaysDate(); 
-  const reversePhrase = txtPhrase.split("").reverse().join(""); 
+  const reversePhrase = txtPhrase.split("").reverse().join("");   
   const len = txtPhrase.length;
+  //Builds out the variables in the assign-results header.
   const header = "Date: " + today + "<br>" + "Original Phrase: " + txtPhrase + "<br>" + "Reversed Phrase: " + reversePhrase + "<br>" + "Phrase Length: " + len;
   document.getElementById("assign-results-header").innerHTML = header;
   
