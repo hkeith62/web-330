@@ -5,9 +5,7 @@
     Modified By: Professor  P. Itskovich, Keith Hall 
     Description: This is the style sheet for wthe palindrome app.   
 */
-body {
-	overflow: hidden;
-}
+ 
 .assign-container {       /* This is the card container */
 	margin-top: -38px;
 }
