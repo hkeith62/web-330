@@ -1,6 +1,6 @@
 import {Product} from "./product.js";
 
-export class Desert extends Product
+export class Dessert extends Product
 {
 	constructor(name, price)
 	{
