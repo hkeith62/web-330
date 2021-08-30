@@ -22,6 +22,7 @@
 	height: 90%;
 	padding-bottom: 8px;
 }
+/* Menu cards start here */
 .inner-card1 {
 	padding: 8px 0 4px 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -48,6 +49,7 @@
 	float: right;
     margin-top: -191.3px;	
 }
+/* End menu cards */
 .inner-card-title {
 	text-align: center;
     font-size: 18.72px;
