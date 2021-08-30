@@ -1,15 +1,22 @@
-export class Bill
+/*
+    Title: WEB 330 – Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 08/29/2021
+    Modified By: Professor  P. Itskovich, Keith Hall 
+    Description: Bill module. 
+*/
+export class Bill             // Creates Bill class and exports
 {
 	constructor(_beverages, _appetizers, _mainCourses, _desserts)
 	{
 		this._beverages = [];
-		this._appetizers = [];
+		this._appetizers = [];           // Class properties are assigned empty arrays.
 		this._mainCourses = [];
         this._desserts = [];
 	}
 	
 	addBeverage(beverage) {		
-		this._beverages.push(beverage);
+		this._beverages.push(beverage);      // Objects are pushed to the arrays.
 	}
 	
 	addAppetizer(appetizer) {		
@@ -24,11 +31,11 @@ export class Bill
 		this._desserts.push(dessert);
 	}
 	
-	getTotal() {
+	getTotal() {                                   
 		let total = 0;
-		this._beverages.forEach(function(beverage)
+		this._beverages.forEach(function(beverage)        // Function that loops over the beverages array
 		{
-			total += parseFloat(beverage.price);
+			total += parseFloat(beverage.price);          // This ensures calculated values are a float.
 	    })
 	
 		this._appetizers.forEach(function(appetizer)
@@ -46,7 +53,7 @@ export class Bill
 			total += parseFloat(dessert.price);
 	    })
 
-		return total.toFixed(2);
+		return total.toFixed(2);                       //Total vaiable is reurned and set to (2) decimals.
 	}
 	
 }

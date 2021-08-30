@@ -66,14 +66,14 @@ a:hover {
 
 .card {  /* Card styling */
 	padding: 8px 0 4px 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 	transition: 0.3s;
 	width: 60%;
 	background-color: #fff;
 }
 .card-title {
 	text-align: center;
-    font-size: 2.3em;
+    font-size: 32px;
     color: #4F3674;
     font-weight: 400;
 }
