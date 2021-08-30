@@ -1,5 +1,14 @@
+/*
+;   Title: WEB 340 –  Node.js
+;   Author: Professor Krasso
+;   Date: 08/29/2021
+;   Modified By: Keith Hall
+;   Description: This app uses express static to run hall-restuarant.html on node server. 
+*/
+
 const express = require('express');
 var path = require("path");
+
 express.static.mime.define({'application/javascript': ['js']});
 const app = express();
 
