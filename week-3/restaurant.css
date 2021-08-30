@@ -24,8 +24,8 @@
 }
 /* Menu cards start here */
 .inner-card1 {
-	padding: 8px 0 4px 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	padding: 8px 0 4px 0;                          
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);            /* Main courses and Beverages card styling*/
 	transition: 0.3s;
 	width: 49%;
 	background-color: #fff;
@@ -33,7 +33,7 @@
 }
 .inner-card2 {
 	padding: 8px 0 4px 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);            /* Appetizers card styling*/
 	transition: 0.3s;
 	width: 49%;
 	background-color: #fff;
@@ -42,7 +42,7 @@
 }
 .inner-card3 {
 	padding: 8px 0 4px 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);              /* Desserts card styling*/ 
 	transition: 0.3s;
 	width: 49%;
 	background-color: #fff;
