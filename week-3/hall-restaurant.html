@@ -112,7 +112,7 @@
 <script type="module" src="./index.js"></script>
 <script type="module">
 import {Bill, Beverage, Appetizer, MainCourse, Dessert} from "./index.js";
-
+ 
 document.getElementById('btnOrder').onclick = function myFunction() {
   const beverageCheck = document.getElementById("beverages");
   const beverages = beverageCheck.getElementsByTagName("input");
@@ -150,8 +150,7 @@ document.getElementById('btnOrder').onclick = function myFunction() {
   }
   
  const total = myBill.getTotal();
-          document.querySelector("#order-total").innerHTML = "Your order total is ${total}";
-  
+          document.getElementById("order-total").innerHTML =  "Your order total is" + " " + (total);
 };
 </script>
 </body>
