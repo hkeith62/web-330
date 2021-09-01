@@ -109,9 +109,7 @@
 		    </div> 
         </div>        
     </div>
-<script type="module" src="./index.js"></script>
 <script type="module">
-
 import {Bill, Beverage, Appetizer, MainCourse, Dessert} from "./index.js";
 
 document.getElementById('btnOrder').onclick = function myFunction() {
@@ -151,7 +149,7 @@ document.getElementById('btnOrder').onclick = function myFunction() {
   }
   
  const total = myBill.getTotal();
-          document.querySelector("#order-total").innerHTML = `Your order total is ${total}`;
+          document.querySelector("#order-total").innerHTML = "Your order total is ${total}";
   
 };
 </script>
