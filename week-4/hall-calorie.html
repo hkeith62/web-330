@@ -1,0 +1,69 @@
+<!--
+    Title: WEB 330– Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 08/30/2021
+    Modified By: Professor  P. Itskovich, Keith Hall
+    Description: This is an html page for web-330 assignment 4.2
+--> 
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8" /> 
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+    <meta name="keywords" content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+    <meta name="robots" content="nofollow" />
+    <meta name="author" content="Keith Hall" />
+    <link rel="stylesheet" href="../theme.css" />
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="stylesheet" href="hall-calorie.css" />
+    <!-- Google fonts for Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
+	<!-- Font Awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="application/javascript" src="../theme.js"></script>
+</head>
+<body class= "light-theme">
+    <!-- This is the card container. -->
+    <div class="assign-container">
+	
+        <h1 class= "app-header" style="font-size:39.81px;">Welcome to the Calorie App!</h1>
+		<!-- This is a card content container. -->
+        <div class="assign-content">
+            <!-- The card with its' title and content -->
+            <div class="card">
+                <div class="card-title"></div>
+				<div class="card-content">
+                    <div class= "form">
+					    <div class= "form-field">
+						    <label for= "txtMydirective">Label Name:</label>
+							<input type= "text" class= "input" id= "txtMydirective" name= "myDirective" />
+                        </div>
+					    <div class= "form-field">
+				            <button class= "btn btn-primary full-width">Submit</button>
+                        </div>
+					</div>   
+                </div>
+		    </div>
+        </div>        
+    </div>
+	 <!-- This is the results card container. -->
+	<div class="assign-container">
+         
+		<!-- This is the results card content container. -->
+        <div class="assign-content">
+            <!-- The card with its' title and content -->
+            <div class="card">
+                <div class="card-title">#</div>
+				<!-- The expected card results -->
+				<div class="card-content assign-results-text">
+                    The expected results.
+                </div>
+		    </div>
+		    <a href="#">Return</a>
+        </div>        
+    </div>
+<script>
+setSelectedTheme();
+</script>
+</body>
+</html>
