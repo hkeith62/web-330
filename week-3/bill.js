@@ -7,7 +7,7 @@
 */
 export class Bill             // Creates Bill class and exports
 {
-	constructor()
+	constructor(_beverages, _appetizers, _mainCourses, _desserts)
 	{
 		this._beverages = [];
 		this._appetizers = [];           // Class properties are assigned empty arrays.

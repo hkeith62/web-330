@@ -6,3 +6,6 @@ export class FoodModel
         this.calories = calories;
     }
 }
+
+// const Food = new FoodModel('23', 'name', '1500');
+// console.log(Food.id, Food.name, Food.calories)
