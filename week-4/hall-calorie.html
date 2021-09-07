@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-<script>
+    <script>
         setDefaultTheme();
         setSelectedTheme();
 
@@ -118,8 +118,9 @@
             document.getElementById("icon-text").innerHTML = "Light Mode";
             document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
         }
-</script>
-<script type="module">
+    </script>
+
+    <script type="module">
         import { CalorieConverter } from './calorie-converter.js';
 
 //input button
@@ -132,7 +133,7 @@ resultsContainer.style.display = 'none';
 let findData = [];
 let tableData = '';
 
-// This creates the example string
+//create the example string
 const examplesArray = [];
 for (const singleItem of CalorieConverter.data){
     examplesArray.push(singleItem.name);
@@ -140,7 +141,7 @@ for (const singleItem of CalorieConverter.data){
 const foodListData = `<i>(Ex: ${examplesArray.join(', ')})</i>`;
 document.querySelector('#food-list').innerHTML = foodListData;
 
-// This binds the input.
+//bind the input
 txtFoodItemEl.addEventListener('keyup', function(e){
     e.preventDefault();
     if (e.key === "Enter") {
@@ -148,11 +149,12 @@ txtFoodItemEl.addEventListener('keyup', function(e){
     }
 })
 
-// This binds the button.
+//bind the button
 document.querySelector('#btnSearch').addEventListener('click', function(e){
     e.preventDefault();
     handleSearch();
 })
+
 //handle search
 const handleSearch = () => {
     //get the input value
@@ -162,7 +164,8 @@ const handleSearch = () => {
     findData = CalorieConverter.find(query);
     buildTableData();
 }
-// This displays the results
+
+//display results
 const buildTableData = () => {
     const tableArray = findData.map(singleItem => {
         return `<tr><td>${singleItem.name}</td><td>${singleItem.calories}</td><tr>`;
