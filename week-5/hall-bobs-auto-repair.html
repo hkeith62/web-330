@@ -1,0 +1,180 @@
+<!--
+    Title: WEB 330– Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 09/08/2021
+    Modified By: Professor  P. Itskovich, Keith Hall
+    Description: This is the main html page for web-330 assignment 5.2
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description"
+        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+    <meta name="keywords"
+        content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+    <meta name="robots" content="nofollow" />
+    <meta name="author" content="Keith Hall" />
+    <link rel="stylesheet" href="../theme.css" />
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="stylesheet" href="hall-calorie.css" />
+    <!-- Google fonts for Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="application/javascript" src="../theme.js"></script>
+</head>
+
+<body class="light-theme" id="dark-theme">
+    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size:28px;"><span
+            id="icon-text">Light Mode</span></i>
+    <!-- This is the card container. -->
+    <div class="assign-container">
+
+        <h1 id="app-header" style="font-size:39.81px;">Welcome to Bob's Auto Repair Shop!</h1>
+        <!-- This is a card content container. -->
+        <div class="assign-content">
+            <!-- The card with its' title and content -->
+            <div class="card">
+                <div class="card-title">Calorie Search Form</div>
+                <div class="card-content">
+                    <div class="form">
+                        <div class="form-field">
+                            <label for="txtFoodItem">Enter a Food Item</label>
+                            <input type="text" class="input" id="txtFoodItem" name="myFoodItem" /><br />
+                            <span id="food-list"></span>
+                        </div>
+                        <div class="form-field">
+                            <button id="btnSearch">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="return-home-container">
+        <a href="../index.html" class="return-home">Return</a>
+    </div>
+    <!-- This is the results card container. -->
+    <div class="assign-container" id="search-results">
+
+        <!-- This is the results card content container. -->
+
+        <div class="assign-content">
+            <!-- The card with its' title and content -->
+            <div class="card">
+                <div class="card-title">Search Results</div>
+                <!-- The expected card results -->
+                <div class="card-content assign-results-text">
+                    <div id="favorite-books">
+                        <table id="books">
+                            <thead id="searchResults">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Calories</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResults-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        setDefaultTheme();
+        setSelectedTheme();
+
+        function toggleMode(x) {
+            let colorTheme = document.body.classList; // get the body's CSS class
+            let iconMode = x.classList; // get the current classes assigned to the triggered button.\
+
+            // If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers local storage.
+            if (colorTheme.value === "light-theme") {
+                localStorage.clear();
+                localStorage.setItem("mode", "dark-theme");
+                localStorage.setItem("iconMode", "fa-toggle-on");
+                localStorage.setItem("iconText", "Dark Mode");
+            }
+            // If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers local storage.
+            else {
+                localStorage.clear();
+                localStorage.setItem("mode", "light-theme");
+                localStorage.setItem("iconMode", "fa-toggle-off");
+                localStorage.setItem("iconText", "Light Mode");
+            }
+            // Apply the updated selection to the HTML page elements
+            colorTheme.value = localStorage.getItem("mode");
+            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+        }
+        // Function clears the browsers localStorage and set the default theme to light-theme.
+        function clearLocalStorage() {
+            localStorage.clear();
+            document.body.classList.value = "light-theme";
+            document.getElementById("icon-text").innerHTML = "Light Mode";
+            document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+        }
+    </script>
+
+    <script type="module">
+        import { CalorieConverter } from './calorie-converter.js';
+
+//input button
+const txtFoodItemEl = document.querySelector('#txtFoodItem');
+
+const resultsContainer = document.querySelector('#search-results');
+//hides the container
+resultsContainer.style.display = 'none';
+
+let findData = [];
+let tableData = '';
+
+//create the example string
+const examplesArray = [];
+for (const singleItem of CalorieConverter.data){
+    examplesArray.push(singleItem.name);
+}
+const foodListData = `<i>(Ex: ${examplesArray.join(', ')})</i>`;
+document.querySelector('#food-list').innerHTML = foodListData;
+
+//bind the input
+txtFoodItemEl.addEventListener('keyup', function(e){
+    e.preventDefault();
+    if (e.key === "Enter") {
+        handleSearch();
+    }
+})
+
+//bind the button
+document.querySelector('#btnSearch').addEventListener('click', function(e){
+    e.preventDefault();
+    handleSearch();
+})
+
+//handle search
+const handleSearch = () => {
+    //get the input value
+    const query = txtFoodItemEl.value
+
+    //do the search
+    findData = CalorieConverter.find(query);
+    buildTableData();
+}
+
+//display results
+const buildTableData = () => {
+    const tableArray = findData.map(singleItem => {
+        return `<tr><td>${singleItem.name}</td><td>${singleItem.calories}</td><tr>`;
+    })
+    tableData = tableArray.join('');
+    document.querySelector('#searchResults-body').innerHTML = tableData;
+
+    resultsContainer.style.display = "block";
+}
+</script>
+</body>
+</html>
