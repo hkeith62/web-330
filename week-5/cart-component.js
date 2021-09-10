@@ -10,7 +10,7 @@ export class CartComponent extends HTMLElement {   // Class inherits HTML functi
         super();
     }                             
         connectedCallBack() {
-        this.innerHTML = '<i id="cartIcon" class="fa fa-shopping-cart"></i>;' //innerHTML set to font awesome string.
+        this.innerHTML = '<i id="cartIcon" class="fa fa-shopping-cart"></i>' //innerHTML set to font awesome string.
     }
 }
 customElements.define("cart-component", CartComponent);  //CartComponent class is registered with the "cart-component" tag name.
