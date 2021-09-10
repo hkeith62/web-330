@@ -7,19 +7,22 @@
 */
 export class ShoppingCart {
     constructor() {
-        this.productId = [];
+        this.productNames = [];
     }
-        count() {  
-        return 
+    
+    countProduct() {  
+        return this.productNames.length;
     }
-        add(productName) {
 
-        }
-        *generatorFunction() {
-         yield "Oil Change"
-         yield "Filter Replacement"
-         yield "Wiper Fluid Refill"
-         } 
+    addProduct(productName) {
+        this.productNames.push("productName");
+    }
+    
+    *generatorFunction() {
+        yield "Oil Change"
+        yield "Filter Replacement"
+        yield "Wiper Fluid Refill"
+    } 
 }
 const myShoppingCart = new ShoppingCart();
 const generator = myShoppingCart.generatorFunction()
@@ -27,4 +30,9 @@ const generator = myShoppingCart.generatorFunction()
 for (const value of generator) {
   console.log(value)
 }
- 
+
+ /* 
+return this.productNames       
+const myShoppingCart = new ShoppingCart();
+console.log(myShoppingCart.countProduct, myShoppingCart.addProduct());
+ */

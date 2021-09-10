@@ -12,3 +12,7 @@ export class Product{
         this.id = Math.random().toString(16).slice(2); // Random integer converted to a string at base 16.
     }
 }
+/*
+const myProduct = new Product("Oil Change", 451)
+console.log(myProduct.id, myProduct.name, myProduct.price)
+*/

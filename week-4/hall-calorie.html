@@ -67,8 +67,8 @@
                 <div class="card-title">Search Results</div>
                 <!-- The expected card results -->
                 <div class="card-content assign-results-text">
-                    <div id="calorie-table">
-                        <table id="calories">
+                    <div id="favorite-books">
+                        <table id="books">
                             <thead id="searchResults">
                                 <tr>
                                     <th>Name</th>
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-    <script>
+<script>
         setDefaultTheme();
         setSelectedTheme();
 
@@ -118,9 +118,8 @@
             document.getElementById("icon-text").innerHTML = "Light Mode";
             document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
         }
-    </script>
-
-    <script type="module">
+</script>
+<script type="module">
         import { CalorieConverter } from './calorie-converter.js';
 
 //input button
@@ -133,7 +132,7 @@ resultsContainer.style.display = 'none';
 let findData = [];
 let tableData = '';
 
-//create the example string
+// This creates the example string
 const examplesArray = [];
 for (const singleItem of CalorieConverter.data){
     examplesArray.push(singleItem.name);
@@ -141,7 +140,7 @@ for (const singleItem of CalorieConverter.data){
 const foodListData = `<i>(Ex: ${examplesArray.join(', ')})</i>`;
 document.querySelector('#food-list').innerHTML = foodListData;
 
-//bind the input
+// This binds the input.
 txtFoodItemEl.addEventListener('keyup', function(e){
     e.preventDefault();
     if (e.key === "Enter") {
@@ -149,12 +148,11 @@ txtFoodItemEl.addEventListener('keyup', function(e){
     }
 })
 
-//bind the button
+// This binds the button.
 document.querySelector('#btnSearch').addEventListener('click', function(e){
     e.preventDefault();
     handleSearch();
 })
-
 //handle search
 const handleSearch = () => {
     //get the input value
@@ -164,8 +162,7 @@ const handleSearch = () => {
     findData = CalorieConverter.find(query);
     buildTableData();
 }
-
-//display results
+// This displays the results
 const buildTableData = () => {
     const tableArray = findData.map(singleItem => {
         return `<tr><td>${singleItem.name}</td><td>${singleItem.calories}</td><tr>`;

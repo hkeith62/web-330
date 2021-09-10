@@ -16,8 +16,8 @@
         content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
     <meta name="robots" content="nofollow" />
     <meta name="author" content="Keith Hall" />
-    <link rel="stylesheet" href="../theme.css" />
-    <link rel="stylesheet" href="../site.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="site.css" />
     <link rel="stylesheet" href="hall-bobs-auto-repair.css" />
     <!-- Google fonts for Oswald -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -27,26 +27,29 @@
 </head>
 
 <body class="light-theme" id="dark-theme">
-    <i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size:28px;"><span
-            id="icon-text">Light Mode</span></i>
     <!-- This is the card container. -->
     <div class="assign-container">
-
         <h1 id="app-header" style="font-size:39.81px;">Welcome to Bob's Auto Repair Shop!</h1>
         <!-- This is a card content container. -->
         <div class="assign-content">
             <!-- The card with its' title and content -->
             <div class="card">
                 <div class="card-title">Product Listing</div>
+                <span id="cart-count"><cart-component></cart-component></span>
                 <div class="card-content">
                     <div class="form">
                         <div class="form-field">
                             <label for="txtFoodItem">Choose a product:</label>
-                            <input type="text" class="input" id="txtFoodItem" name="myFoodItem" /><br />
-                            <span id="food-list"></span>
+                            <select id="productList" class="drop-down-menu">
+                                <option value="select">--Select--</option>
+                                <option value="19.99">Oil Change</option>
+                                <option value="18.44">Filter Replacement</option>
+                                <option value="9.99">Wiper Fluid Refill</option>
+                            </select> <br />
+                            <i id="cart-message">To view your shopping cart click on the cart icon</i>  
                         </div>
                         <div class="form-field">
-                            <button id="btnSearch">Add to Cart</button>
+                            <button id="btnAddProduct">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -67,15 +70,16 @@
                 <div class="card-title">Shopping Cart</div>
                 <!-- The expected card results -->
                 <div class="card-content assign-results-text">
-                    <div id="favorite-books">
-                        <table id="calories">
-                            <thead id="searchResults">
+                    <div id="shoppingCart-table">
+                        <table id="shopping-cart">
+                            <thead id="shoppingCart">
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
-                                    <th>Calories</th>
+                                    <th>Price</th>
                                 </tr>
                             </thead>
-                            <tbody id="searchResults-body">
+                            <tbody id="shoppingCart">
 
                             </tbody>
                         </table>
@@ -84,45 +88,12 @@
             </div>
         </div>
     </div>
-    <script>
-        setDefaultTheme();
-        setSelectedTheme();
-
-        function toggleMode(x) {
-            let colorTheme = document.body.classList; // get the body's CSS class
-            let iconMode = x.classList; // get the current classes assigned to the triggered button.\
-
-            // If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers local storage.
-            if (colorTheme.value === "light-theme") {
-                localStorage.clear();
-                localStorage.setItem("mode", "dark-theme");
-                localStorage.setItem("iconMode", "fa-toggle-on");
-                localStorage.setItem("iconText", "Dark Mode");
-            }
-            // If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers local storage.
-            else {
-                localStorage.clear();
-                localStorage.setItem("mode", "light-theme");
-                localStorage.setItem("iconMode", "fa-toggle-off");
-                localStorage.setItem("iconText", "Light Mode");
-            }
-            // Apply the updated selection to the HTML page elements
-            colorTheme.value = localStorage.getItem("mode");
-            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
-            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
-        }
-        // Function clears the browsers localStorage and set the default theme to light-theme.
-        function clearLocalStorage() {
-            localStorage.clear();
-            document.body.classList.value = "light-theme";
-            document.getElementById("icon-text").innerHTML = "Light Mode";
-            document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
-        }
-    </script>
-
-    <script type="module">
-        import { CalorieConverter } from './calorie-converter.js';
-
+<script type="module">
+import { Product } from "./product.js";
+import { ShoppingCart } from "./shopping-cart.js";
+ 
+var myCart = document.createElement('cart-component');
+document.getElementById("cart-count"),innerHTML = myCart;
 //input button
 const txtFoodItemEl = document.querySelector('#txtFoodItem');
 

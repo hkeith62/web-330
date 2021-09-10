@@ -53,7 +53,7 @@ export class Bill             // Creates Bill class and exports
 			total += parseFloat(dessert.price);
 	    })
 
-		return total.toFixed(2);                       //Total vaiable is reurned and set to (2) decimals.
+		return total.toFixed(2);                       //Total variable is returned and set to (2) decimals.
 	}
 	
 }
