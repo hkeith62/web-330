@@ -9,7 +9,7 @@ body {
     font-family: Oswald, Verdana, Arial, sans-serif;
 }
 body.light-theme {
-	color: #000;
+	color: #fff;
     background-color: #fff;
 }
 .light-theme {

@@ -7,7 +7,7 @@
 */
 export class ShoppingCart {
     constructor() {
-        this.productNames = [];
+        this.productNames = [233];
     }
     
     countProduct() {  
@@ -16,21 +16,10 @@ export class ShoppingCart {
 
     addProduct(productName) {
         this.productNames.push("productName");
+        return this.productNames;
     }
-    
-    *generatorFunction() {
-        yield "Oil Change"
-        yield "Filter Replacement"
-        yield "Wiper Fluid Refill"
-    } 
-}
-const myShoppingCart = new ShoppingCart();
-const generator = myShoppingCart.generatorFunction()
-// Iterate over Generator object
-for (const value of generator) {
-  console.log(value)
-}
 
+}
  /* 
 return this.productNames       
 const myShoppingCart = new ShoppingCart();

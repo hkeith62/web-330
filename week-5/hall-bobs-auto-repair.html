@@ -7,7 +7,6 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="description"
@@ -35,7 +34,7 @@
             <!-- The card with its' title and content -->
             <div class="card">
                 <div class="card-title">Product Listing</div>
-                <span id="cart-count"><cart-component></cart-component></span>
+                <cart-component></cart-component>
                 <div class="card-content">
                     <div class="form">
                         <div class="form-field">
@@ -49,7 +48,7 @@
                             <i id="cart-message">To view your shopping cart click on the cart icon</i>  
                         </div>
                         <div class="form-field">
-                            <button id="btnAddProduct">Add to Cart</button>
+                            <button id="btnAddProduct" onclick="myFunction()">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -87,11 +86,35 @@
         </div>
     </div>
 <script type="module">
+    // Imported modules
 import { Product } from "./product.js";
-import { ShoppingCart } from "./shopping-cart.js";
- 
-var myCart = document.createElement('cart-component');
-document.getElementById("cart-count"),innerHTML = myCart;
+import { ShoppingCart } from "./shopping-cart.js"; 
+import { CartComponent } from "./cart-component.js";
+
+const resultsContainer = document.getElementById("search-results");
+resultsContainer.style.display = "none";  //hides the container
+
+function setCartCount(productName) {
+   this.productName = productName;
+}  
+function countProduct() {
+    countProduct.call(this, productName);
+}
+// countProduct() from shoppingCart object called inside setCartCount()-bind result to cart-count div.
+const myShoppingCart = new ShoppingCart(); 
+document.getElementById("cart-count").innerHTML = (new setCartCount(myShoppingCart.countProduct()).productName); 
+
+// Onclick event.
+function myFunction() {   
+  const productList = document.getElementById("productList");
+  // Captures the value and text of select list options and assigns them to variables.  
+  const product = productList.options[productList.selectedIndex].text;
+  const productValue = productList.options[productList.selectedIndex].value;
+
+      if (product !== "select") {
+
+      }
+}
 </script>
 </body>
 </html>

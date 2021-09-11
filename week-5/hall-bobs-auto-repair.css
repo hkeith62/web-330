@@ -18,7 +18,6 @@
     letter-spacing: 2px;
     cursor: pointer;
 }
-
 /* Button styling */
 #btnAddProduct  {
     width: 100%;
@@ -68,7 +67,7 @@
 }
 /* Select Menu styling */
 .drop-down-menu {
-	width: 57%;
+	width: 59%;
 	padding: 12px 25px 12px 25px; 
     margin: 18px 0;
     display: inline-block;
