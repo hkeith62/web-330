@@ -5,14 +5,19 @@
     Modified By: Keith Hall 
     Description: This page creates custom html elements
 */
-export class CartComponent extends HTMLElement {   // Class inherits HTML functionality.
+class CartComponent extends HTMLElement {   // Class inherits HTML functionality.
     constructor() {          
         super();
     }                             
-        connectedCallBack() {
-        this.innerHTML = '<i id="cartIcon" class="fa fa-shopping-cart"></i> <span id="cart-count"></span>';  //innerHTML set to font awesome string.
+    connectedCallback() {
+        this.innerHTML = `
+            <span id="cart-count">
+                <i id="cartIcon" class="fa fa-shopping-cart fa-2x">
+                </i>
+            </span>
+        `;
     }
 }
-customElements.define("cart-component", CartComponent);  //CartComponent class is registered with the "cart-component" tag name.
+customElements.define("cart-component", CartComponent);  //CartComponent class is registered with the "cart-component" tag name. 
 
  

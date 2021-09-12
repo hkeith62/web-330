@@ -32,6 +32,7 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 		<script type="application/javascript" src="../theme.js"></script>
 		<script></script>
 	</head>
@@ -47,10 +48,7 @@
 				<!-- The card with its' title and content -->
 				<div class="card">
 					<div class="card-title">Product Listing</div>
-					<div id="cart-count"></div>
-					<i id="cartIcon" class="fa fa-shopping-cart"></i>
-					<span id="cart-count"></span>
-					<cart-component></cart-component>
+					<cart-component style="margin-left:300px;"></cart-component>
 					<div class="card-content">
 						<div class="form">
 							<div class="form-field">
@@ -103,13 +101,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- <script type="module" src="./cart-component.js"></script> -->
-
+		<script type="module" src="./cart-component.js"></script> 
 		<script type="module">
 			// Imported modules
 			import { Product } from "./product.js";
 			import { ShoppingCart } from "./shopping-cart.js";
-			import { CartComponent } from "./cart-component.js";
+			 
 
 			const resultsContainer = document.getElementById("search-results");
 			resultsContainer.style.display = "none";  //hides the container
@@ -131,17 +128,12 @@
           resultsContainer.style.display = "block";  //hides the container
 				}
 			}
-			document
-				.getElementById("btnAddProduct")
-				.addEventListener("click", addProduct);
+			document.getElementById("btnAddProduct").addEventListener("click", addProduct);
 
 			function cartDisplayTable() {
-        console.log('cartDisplay')
+        		console.log('cartDisplay')
       }
-
-			document
-				.getElementById("cartIcon")
-				.addEventListener("click", cartDisplayTable);
+			document.getElementById("cartIcon").addEventListener("click", cartDisplayTable);
 
 			// countProduct() from shoppingCart object called inside setCartCount()-bind result to cart-count div.
 
