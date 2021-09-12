@@ -15,4 +15,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/hall-calorie.html'));  // Request handler is called to respond when a request to hall-calorie.html is made.
 });
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8080, () => console.log('Listening on port 8080!'));  // Starts the server listening on port 8080.  

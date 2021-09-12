@@ -14,4 +14,5 @@ export class CartComponent extends HTMLElement {   // Class inherits HTML functi
     }
 }
 customElements.define("cart-component", CartComponent);  //CartComponent class is registered with the "cart-component" tag name.
+
  
