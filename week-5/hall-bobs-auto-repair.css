@@ -3,13 +3,12 @@
     Author: Professor Krasso
     Date: 09/08/2021
     Modified By: Professor  P. Itskovich, Keith Hall 
-    Description: This is the style sheet for web-330, assignment 5.2, employee records app.  
+    Description: This is the style sheet for bobs-auto-repair app assignment 5.2  
 */
 #app-header {   /* H1 heading. */           
 	text-align: center;
 	color: #fff;
     letter-spacing: 1px;
-    
 }
 #cart-message {   
     float: right;          
@@ -37,8 +36,7 @@
     color: #4F3674;
 }
 #return-home-container {
-	margin-left: 325px;
-	 
+	margin-left: 325px; 
 }
 /* Styling of search results and table data, rows */
 #shopping-cart {                                 
@@ -53,7 +51,6 @@
     text-align: left;
     background-color: #4F3674;
     color: #fff;
-     
 }
 #shopping-cart td, #shopping-cart th {
     border: 1px solid #ddd;
@@ -79,7 +76,19 @@
 .form {
 	width: 80%;
 }
-
 .form-field {     /* Select Menu container */
 	width: 65%;
+}
+cart-component {            /* Begin cart styling */
+    width: 100px; 
+    margin: 0 auto; 
+    display: block;
+    font-size: 22px;
+}
+#cartIcon {
+    color: #4F3674;
+}
+#cart-count {
+    font-size: 16px;
+    color: #4F3674;
 }

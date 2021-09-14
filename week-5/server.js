@@ -7,13 +7,11 @@
 var express = require("express");  
 var path = require("path");
 var http = require("http");
-var logger = require("morgan");
 
 var app = express();
-express.static.mime.define({'application/javascript': ['js']});
+express.static.mime.define({'application/javascript': ['js']});  // Express middleware function that serves static files such as images, CSS files, and JavaScript.
 
 app.use( '/', express.static( __dirname + '/' ));
-app.use(logger("short"));             // Tell Node to use morgan to log requests.
 
 app.get('/', function(request, response){
   response.sendFile(path.join(__dirname + "/hall-bobs-auto-repair.html")); // Request handler is called to respond when a request to hall-bobs-auto-repair.html is made.
