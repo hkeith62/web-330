@@ -31,14 +31,13 @@
 	margin-left: 325px;
 	 
 }
-#calorie-search {
+#books {
     border-collapse: collapse;
     margin-bottom: 10px;
     font-size: 16px;
 	border-color: #ddd;
-    color: white;
 }
-#calories-search th {
+#books th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -46,12 +45,12 @@
     color: #fff;
      
 }
-#calorie-search td, #calorie-search th {
+#books td, #books th {
     border: 1px solid #ddd;
     padding: 4px;
     
 }
-#calorie-search tr:hover {
+#books tr:hover {
     background-color: #D6A800;
     color: #4F3674;
     cursor: pointer;

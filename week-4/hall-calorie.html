@@ -67,8 +67,8 @@
                 <div class="card-title">Search Results</div>
                 <!-- The expected card results -->
                 <div class="card-content assign-results-text">
-                    <div id="calorie">
-                        <table id="calorie-search">
+                    <div id="favorite-books">
+                        <table id="books">
                             <thead id="searchResults">
                                 <tr>
                                     <th>Name</th>
@@ -125,9 +125,9 @@
 //input button
 const txtFoodItemEl = document.querySelector('#txtFoodItem');
 
-const resultsContainer = document.getElementById('search-results');
+const resultsContainer = document.querySelector('#search-results');
 //hides the container
-resultsContainer.style.display = 'none';
+resultsContainer.style.display = "none";
 
 let findData = [];
 let tableData = '';
