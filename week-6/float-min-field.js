@@ -1,7 +1,7 @@
 /**
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 08/22/2021
+    Date: 09/17/2021
     Modified By: Keith Hall 
     Description: This is the float-min-field module for the Future Value App- web-330 assignment 6.2.   
 */
@@ -13,6 +13,7 @@ export class FloatMinField {
     }
     validate() {
         const floatVal = parseFloat(this.field);   // ParseFloat for numeric value.
+
         return(floatVal > this.min) ? false : true; // If the numeric value of this.field is greater than this.min, return false.
     }
     getMessage() {

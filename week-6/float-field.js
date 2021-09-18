@@ -1,9 +1,9 @@
 /**
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 08/22/2021
+    Date: 09/15/2021
     Modified By: Keith Hall 
-    Description: This is the float-field module for web-330 assignment 6.2.   
+    Description: This is the float-field module for the Future Value App-web-330 assignment 6.2.   
 */
 export class FloatField {
     constructor(name, field) {
