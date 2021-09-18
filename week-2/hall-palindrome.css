@@ -9,10 +9,7 @@
 .assign-container {       /* This is the card container */
 	margin-top: -38px;
 }
-#assign-results-header {
-	font-size: 16px;
-	font-weight: 400;
-}
+ 
 #app-header {                /* H1 heading. */
 	text-align: center;
 }
