@@ -34,22 +34,21 @@
         <div class="card">  <!-- This is card 1 with title and content -->
             <div class="card-title" style="margin-bottom: 6px;">Future Value Calculator</div>
 
-            <div class="col-12 alert alert-danger" id="errorLog"></div> <!--12 column danger alert-->
+            <div class="col-12" class="alert alert-danger" id="errorLog"></div> <!--12 column danger alert-->
 
-            <div class="card-content">
+            <div class="card-content"> <!-- Form labels and input fields-->
                 <div class= "form-field" class="col-5">
-                    <label for= "txtPhrase" class="form-label">Monthly Payment:</label>
-                    <input type= "text" class= "col-4" id= "txtPhrase" name= "myPhrase" />
+                    <label for= "txtMonthlyPayment" class="form-label">Monthly Payment:</label>
+                    <input type= "text" class= "col-4" id= "txtMonthlyPayment" value= "" />
                 </div>
                 <div class= "form-field" class="col-5">
-                    <label for= "txtPhrase" class="form-label2">Interest Rate:</label>
-                    <input type= "text" class= "col-4" id= "txtPhrase" name= "myPhrase" /><br />
-                    <i class="danger">Enter 11% as 11.1</i>
+                    <label for= "txtYearlyRate" class="form-label-interest">Interest Rate:</label>
+                    <input type= "text" class= "col-4" id= "txtYearlyRate" value= "" /><br />
+                    <i class="danger">Enter 11% as 11.1</i> <!--Interest rate example-->
                 </div>
-                <div class= "form-field" class="col-12">
-                    <label for= "txtPhrase" class="form-label3">Number of Years:</label>
-                    
-                    <select id="productList" class="drop-down-menu col-5">
+                <div class= "form-field" class="col-5">
+                    <label for= "txtPhrase" class="form-label-years">Number of Years:</label>
+                    <select id="listNumOfYears" class="drop-down-menu" class="col-5">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -63,8 +62,8 @@
                     </select> 
                 </div>
                 <div class="form-field">
-                    <button id="btnAddProduct">Calculate</button>
-                  </div>
+                    <button id="btnCalculate">Calculate</button>
+                </div>
             </div>     
         </div>
         <div id= "return-home-container">
@@ -78,13 +77,38 @@
     <div class="assign-content">
 
         <div class="card"> <!-- This is card 2 with title and content -->
-            <div class="card-title">Calculation as of 9/16/2021</div>
-
-            <!-- The expected card results -->
-            <div id="order-total" class= "assign-results-text"></div>
+            <div class="card-title">Calculation as of <span id="today"></span></div> 
+            <div class="card-content"> 
+                <!-- The expected card results -->
+                <div id="futureValue" class= "assign-results-text"></div>
+            </div>
         </div> 
     </div> 
 </div>      
- 
+ <script type="module">
+  import { FinanceCalculator } from "./finance-calculator.js";  // Imported modules
+  import { Validator } from "./validator.js"; 
+
+  var date = new Date();      
+  document.getElementById("today").innerHTML = date.toLocaleDateString("en-US");  //InnerHTML set to a new date object (locale conventions)- en-US passed in.
+
+  document.getElementById("btnCalculate").addEventListener("click", function() {
+
+  // Binds inputted values- monthly payment, interest rate.
+  const monthlyPayment = document.getElementById("txtMonthlyPayment").value;       
+  const rate = document.getElementById("txtYearlyRate").value;
+  const years = document.getElementById("listNumOfYears");   //Binds the select menu.
+  const numOfYears = years.options[years.selectedIndex].value; // Binds the option selected.
+  const errLogEl = document.getElementById("errorLog");
+
+
+});
+  
+ </script>
+<script>
+var date = new Date(); 
+document.getElementById("today").innerHTML = date.toLocaleDateString("en-US"); 
+</script>
 </body>
 </html>
+ 

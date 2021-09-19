@@ -71,9 +71,10 @@ a:hover {
 	background-color: #fff;
 }
 .card-title {
+    width: 100%;
 	text-align: center;
-    font-size: 32px;
-    color: black;
+    font-size: 2em;
+    color: #4F3674;
     font-weight: 400;
 }
 .card-content {

@@ -5,31 +5,32 @@
     Modified By: Professor  P. Itskovich, Keith Hall 
     Description: This is the style sheet for web-330 assignment 6.2- Future Value App.    
 */
-.danger {
+.danger {                     
     margin-left: 210px;
-    color: #df546a;
+    color: #df546a;        /* Interest rate example beneath interest input field. */
     font-size: 12px;
     letter-spacing: 2px;
 }
+/* Form Labels */
 .form-label {
     display: inline-block;
-    padding-right: 3.7rem;
+    padding-right: 3.3rem;      /* Separates labels from input fields. */
 }
-.form-label2 {
+.form-label-interest {
     display: inline-block;
-    padding-right: 5.2rem;
+    padding-right: 4.9rem;
 }
-.form-labe3 {
+.form-label-years {
     display: inline-block;
-    padding-right: 8.2rem;
+    
 }
-#productList {
-	margin-left: 4rem;
+#listNumOfYears {          /* Select menu positioning */        
+	margin-left: 3.6rem;
 }
 #return-home-container {
 	margin-top: 10px; 
 }
-#btnAddProduct  {
+#btnCalculate   {
     width: 50%;
 	border: none;
     text-align: center;
@@ -42,7 +43,7 @@
 	background-color: #4F3674;
     color: #fff;
 }
-#btnAddProduct:hover {
+#btnCalculate :hover {
 	background-color: #D6A800;
     color: #4F3674;
 }

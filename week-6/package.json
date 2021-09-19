@@ -1,0 +1,8 @@
+{
+    "name": "future-value-app",
+    "author": "Keith Hall",
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
