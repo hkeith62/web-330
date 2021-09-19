@@ -62,7 +62,7 @@
                     </select> 
                 </div>
                 <div class="form-field">
-                    <button id="btnCalculate">Calculate</button>
+                    <button id="btnCalculator">Calculate</button>
                 </div>
             </div>     
         </div>
@@ -84,30 +84,56 @@
             </div>
         </div> 
     </div> 
-</div>      
- <script type="module">
-  import { FinanceCalculator } from "./finance-calculator.js";  // Imported modules
-  import { Validator } from "./validator.js"; 
-
+</div>
+<!--  
+<script type="module" src="./finance-calculator.js"></script>
+<script type="module" src="./validator.js"></script>
+<script type="module">  
+-->
+<script type="module">
+// Imported modules.
+import {FinanceCalculator} from "./finance-calculator.js";
+import {Validator} from "./validator.js"; 
+ 
   var date = new Date();      
   document.getElementById("today").innerHTML = date.toLocaleDateString("en-US");  //InnerHTML set to a new date object (locale conventions)- en-US passed in.
-
-  document.getElementById("btnCalculate").addEventListener("click", function() {
-
-  // Binds inputted values- monthly payment, interest rate.
-  const monthlyPayment = document.getElementById("txtMonthlyPayment").value;       
-  const rate = document.getElementById("txtYearlyRate").value;
-  const years = document.getElementById("listNumOfYears");   //Binds the select menu.
-  const numOfYears = years.options[years.selectedIndex].value; // Binds the option selected.
-  const errLogEl = document.getElementById("errorLog");
-
-
-});
   
- </script>
-<script>
-var date = new Date(); 
-document.getElementById("today").innerHTML = date.toLocaleDateString("en-US"); 
+    function addFutureValue() {
+
+      // Binds inputted values- monthly payment, interest rate.
+      const monthlyPayment = document.getElementById("txtMonthlyPayment").value;
+      const rate = document.getElementById("txtYearlyRate").value;
+      const years = document.getElementById("listNumOfYears");   //Binds the select menu.
+      const numOfYears = years.options[years.selectedIndex].value; // Binds the option selected.
+      const errLogEl = document.getElementById("errorLog");
+
+      const monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment)
+      monthlyPaymentValidator.addRequiredField();
+	  monthlyPaymentValidator.addRequiredFloatField();
+	  monthlyPaymentValidator.addFloatMinField(100);
+
+      const rateValidator = new Validator("Interest Rate", rate);
+	  rateValidator.addRequiredField();
+	  rateValidator.addRequiredFloatField();
+	  rateValidator.addFloatMinField(100);
+
+      const errorLog = [];
+
+        if(!monthlyPaymentValidator.validate()) {
+            for (let msg of monthlyPaymentValidator.messages) {
+              errorLog.push(msg);
+            }
+        }
+        if(!rateValidator.validate()) {
+            for (let msg of rateValidator.messages) {
+              errorLog.push(msg);
+            }
+        }
+        
+    
+    }
+document.getElementById("btnCalculator").addEventListener("click", addFutureValue);
+ 
 </script>
 </body>
 </html>

@@ -30,7 +30,7 @@
 #return-home-container {
 	margin-top: 10px; 
 }
-#btnCalculate   {
+#btnCalculator   {
     width: 50%;
 	border: none;
     text-align: center;
@@ -43,7 +43,7 @@
 	background-color: #4F3674;
     color: #fff;
 }
-#btnCalculate :hover {
+#btnCalculator :hover {
 	background-color: #D6A800;
     color: #4F3674;
 }
