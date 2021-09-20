@@ -1,6 +1,6 @@
 /*  Title: WEB 340 –  Node.js
 ;   Author: Keith Hall
-;	Date: 09/18/2021
+;	Date: 09/10/2021
 ;	Description: This is the server page for Bobs-auto-repair app-assignment 5.2
 */
 // Call modules to be used in the app
@@ -9,7 +9,7 @@ var path = require("path");
 var http = require("http");
 
 var app = express();
-express.static.mime.define({'application/javascript': ['js']});  // Express middleware function that serves static files such as images, CSS files, and JavaScript.
+express.static.mime.define({'application/javascript': ['js']});
 
 app.use( '/', express.static( __dirname + '/' ));
 

@@ -5,7 +5,7 @@
     Modified By: Keith Hall 
     Description: This is the float-field module for the Future Value App-web-330 assignment 6.2.   
 */
-export class FloatField {
+export default class FloatField {
     constructor(name, field) {
         this.name = name;
         this.field = field;

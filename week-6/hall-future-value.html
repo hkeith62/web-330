@@ -1,10 +1,10 @@
 <!--
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 09/14/2021
+    Date: 09/15/2021
     Modified By: Keith Hall
     Description: This is the HTML page for web-330 assignment 6.2- Future Value App.  
---> 
+-->
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
 </head>
-<body>
-<!-- This is the container for both cards. -->
+  <body>
 <div class="assign-container">
     <h1 id= "app-header">Home of the Future Value App!</h1>
     <div class="assign-content"> 
@@ -34,7 +33,7 @@
         <div class="card">  <!-- This is card 1 with title and content -->
             <div class="card-title" style="margin-bottom: 6px;">Future Value Calculator</div>
 
-            <div class="col-12" class="alert alert-danger" id="errorLog"></div> <!--12 column danger alert-->
+            <div class="col-12 alert alert-danger" id="errorLog"></div> <!--12 column danger alert-->
 
             <div class="card-content"> <!-- Form labels and input fields-->
                 <div class= "form-field" class="col-5">
@@ -71,70 +70,119 @@
         </div> 
     </div>
 </div>
-<div class="assign-container">
+    <div class="assign-container" id="results">
+      <!-- The results card content container. -->
+      <div class="assign-content">
+        <div class="card">
+          <!-- This is card 2 with title and content -->
+          <div class="card-title">
+            Calculation as of <span id="today"></span>
+          </div>
 
-    <!-- The results card content container. -->
-    <div class="assign-content">
+          <!-- The expected card results -->
+          <div id="futureValue" class="assign-results-text"></div>
+        </div>
+      </div>
+    </div>
+  <script type="module">
+    //import modules
+    import Validator from "./validator.js";
+    import FinanceCalculator from "./finance-calculator.js";
 
-        <div class="card"> <!-- This is card 2 with title and content -->
-            <div class="card-title">Calculation as of <span id="today"></span></div> 
-            <div class="card-content"> 
-                <!-- The expected card results -->
-                <div id="futureValue" class= "assign-results-text"></div>
-            </div>
-        </div> 
-    </div> 
-</div>
-<!--  
-<script type="module" src="./finance-calculator.js"></script>
-<script type="module" src="./validator.js"></script>
-<script type="module">  
--->
-<script type="module">
-// Imported modules.
-import {FinanceCalculator} from "./finance-calculator.js";
-import {Validator} from "./validator.js"; 
- 
-  var date = new Date();      
-  document.getElementById("today").innerHTML = date.toLocaleDateString("en-US");  //InnerHTML set to a new date object (locale conventions)- en-US passed in.
-  
-    function addFutureValue() {
+    //get today's date
+    const today = new Date();
+    document.getElementById("today").innerHTML = today.toLocaleDateString("en-US");
 
-      // Binds inputted values- monthly payment, interest rate.
-      const monthlyPayment = document.getElementById("txtMonthlyPayment").value;
-      const rate = document.getElementById("txtYearlyRate").value;
-      const years = document.getElementById("listNumOfYears");   //Binds the select menu.
-      const numOfYears = years.options[years.selectedIndex].value; // Binds the option selected.
-      const errLogEl = document.getElementById("errorLog");
+    const errorLogEl = document.getElementById("errorLog");
+    errorLogEl.style.display = "none"; //hide the error log element
 
-      const monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment)
-      monthlyPaymentValidator.addRequiredField();
-	  monthlyPaymentValidator.addRequiredFloatField();
-	  monthlyPaymentValidator.addFloatMinField(100);
+    //hide the results element
+    document.getElementById("results").style.display = "none";
 
-      const rateValidator = new Validator("Interest Rate", rate);
-	  rateValidator.addRequiredField();
-	  rateValidator.addRequiredFloatField();
-	  rateValidator.addFloatMinField(100);
+    //get the futureValue element
+    const futureValueEl = document.getElementById("futureValue");
 
-      const errorLog = [];
+    //create base variables
+    let monthlyPayment, rate, years;
 
-        if(!monthlyPaymentValidator.validate()) {
-            for (let msg of monthlyPaymentValidator.messages) {
-              errorLog.push(msg);
-            }
+    //add an onclick event to the btnCalculator element
+    document.getElementById("btnCalculator").addEventListener("click", function (e) {
+      getFormValues();
+      validateForm();
+    });
+      //Bind inputted values- monthly payment, interest and select fields
+      function getFormValues() {
+        monthlyPayment = document.getElementById("txtMonthlyPayment").value;
+        rate = document.getElementById("txtYearlyRate").value;
+        years = document.getElementById("listNumOfYears").value;
+      }
+
+      function validateForm() {
+        //create a validator for the monthly payment
+        const monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment);
+        monthlyPaymentValidator.addRequiredField();
+        monthlyPaymentValidator.addRequiredFloatField();
+        monthlyPaymentValidator.addFloatMinField(100);
+
+        //create a validator for the interest rate
+        const rateValidator = new Validator("Interest Rate", rate);
+        rateValidator.addRequiredField();
+        rateValidator.addRequiredFloatField();
+        rateValidator.addFloatMaxField(100);
+
+        //validate the information
+        const monthlyIsValid = monthlyPaymentValidator.validate();
+        const rateIsValid = rateValidator.validate();
+
+        //if either monthly or rate is invalid
+        if (!monthlyIsValid || !rateIsValid) {
+          displayErrors(
+            monthlyPaymentValidator.messages,
+            rateValidator.messages
+          );
+          return;
         }
-        if(!rateValidator.validate()) {
-            for (let msg of rateValidator.messages) {
-              errorLog.push(msg);
-            }
+        calculateFinances();
+      }
+      function displayErrors(monthlyMessages, rateMessages) {
+        //clear and hide the error log
+        errorLogEl.innerHTML = "";
+        errorLogEl.style.display = "none";
+
+        //create an empty array for the error log
+        const errorLog = [];
+        //get the errors for each
+        for (const singleError of monthlyMessages) {
+          errorLog.push(singleError);
         }
+        for (const singleError of rateMessages) {
+          errorLog.push(singleError);
+        }
+        //build an unordered list
+        let errorLogMessage = "<ul>";
+        for (const singleMessage of errorLog) {
+          errorLogMessage += `<li>${singleMessage}</li>`;
+        }
+
+        errorLogMessage += "</ul>";
+        //set the inner html to the new unordered list
+        errorLogEl.innerHTML = errorLogMessage;
+        errorLogEl.style.display = "block";
+      }
+
+      function calculateFinances() {
+
+        //clear and hide the error log
+        errorLogEl.innerHTML = "";
+        errorLogEl.style.display = "none";
+
+        //calculate the value
+        const futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
         
-    
-    }
-document.getElementById("btnCalculator").addEventListener("click", addFutureValue);
- 
-</script>
-</body>
+        futureValueEl.innerHTML = `The future value is ${FinanceCalculator.convertToCurrency(futureValue)}`;
+        //show the results div
+        document.getElementById("results").style.display = "block";
+      }
+    </script>
+  </body>
 </html>
- 

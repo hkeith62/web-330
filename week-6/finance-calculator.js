@@ -5,7 +5,7 @@
     Modified By: Keith Hall 
     Description: This is the finance calculator for the Future Value App- web-330 assignment 6.2.   
 */
-export class FinanceCalculator {
+export default class FinanceCalculator {
     static MONTHS_IN_YEAR = 12;
 
     // Finance Calculator

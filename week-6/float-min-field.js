@@ -5,7 +5,7 @@
     Modified By: Keith Hall 
     Description: This is the float-min-field module for the Future Value App- web-330 assignment 6.2.   
 */
-export class FloatMinField {
+export default class FloatMinField {
     constructor(name, field, min) {
         this.name = name;
         this.field = field;
@@ -14,9 +14,9 @@ export class FloatMinField {
     validate() {
         const floatVal = parseFloat(this.field);   // ParseFloat for numeric value.
 
-        return(floatVal > this.min) ? false : true; // If the numeric value of this.field is greater than this.min, return false.
+        return floatVal > this.min; // If the numeric value of this.field is greater than this.min, return false.
     }
     getMessage() {
-        `${this.name} must be more than ${this.min}. You entered ${this.field}`;
+        return `${this.name} must be more than ${this.min}. You entered ${this.field}`;
     }
 }

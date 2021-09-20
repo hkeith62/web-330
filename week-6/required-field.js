@@ -1,11 +1,11 @@
 /**
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 09/16/2021
+    Date: 09/15/2021
     Modified By: Keith Hall 
     Description: This is the required-field module for the Future Value App-web-330 assignment 6.   
 */
-export class RequiredField {
+export default class RequiredField {
     constructor(name, field) {
       this.name = name;
       this.field = field;
