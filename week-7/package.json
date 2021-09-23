@@ -1,0 +1,8 @@
+{
+    "name": "what-a-book1",
+    "author": "Keith Hall",
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
