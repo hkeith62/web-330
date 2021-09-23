@@ -1,0 +1,50 @@
+/**
+    Title: WEB 330 – Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 09/22/2021
+    Modified By: Professor  P. Itskovich, Keith Hall 
+    Description: This is the style sheet for the what-a-book1 app. Web-330 assignment 7.2.   
+*/
+
+/* Main content containers */
+.assign-content {
+    width: 82%;
+    margin-top: 3%;
+	margin-left: 24.35%;
+}
+/* Bottom card results text. */
+.card-content-text {
+	text-align: center;
+    font-size: 32px;
+}
+/* H1 heading. */
+#app-header {    
+    width: 100%;
+	text-align: center;
+	color: #fff;
+}
+#return-home-container {
+	margin-top: 10px; 
+}
+.return-home {
+	color: #4F3674;
+	text-decoration: none;
+}
+.return-home:hover {
+    background-color: #D6A800;
+    color: #4F3674;
+}
+.return-home:visited {
+    color: #3c275a;
+}
+.full-width {
+	width: 100%;
+}
+/* Form styling. */
+.form {
+	display: inline-grid;
+    grid-template-columns: auto;
+}
+.form-field {
+	padding: 14px;
+}
