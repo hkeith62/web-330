@@ -55,16 +55,16 @@
 		</div>
 	</div>
 <script>
-    const fileName = "books.xml";
+    const fileName = "books.xml"; // Variable assigned to the string value of the xml document- books.xml
         let bookData, xmlData;
-        window.addEventListener("DOMContentLoaded", function (event) {  // Event listener for "clicks."
+        window.addEventListener("DOMContentLoaded", function (event) {  // Event listener for DOMContentLoaded.   
             getBookData()
             .then(() => {
                 parseData();
             })
         });
 
-    const getBookData = () => {
+    const getBookData = () => {      // Uses JavaScripts fetch() API to request the xml document.
         return fetch(fileName)
         .then(res => res.text())
         .then(data => bookData = data);
