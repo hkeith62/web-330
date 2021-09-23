@@ -1,4 +1,4 @@
-<!--
+ <!--
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
     Date: 09/15/2021
@@ -46,25 +46,27 @@
 		</div>
 	</div>
 <script>
-    const fileName = "books.xml"; // Variable assigned to the string value of the xml document- books.xml
-        let bookData, xmlData;
-        window.addEventListener("DOMContentLoaded", function (event) {  // Event listener for DOMContentLoaded.   
-            getBookData()
-            .then(() => {
-                parseData();
-            })
-        });
-
-    const getBookData = () => {      // Uses JavaScripts fetch() API to request the xml document.
-        return fetch(fileName)
+    
+    let bookData, xmlData;
+    
+    window.addEventListener("DOMContentLoaded", function (event) {  // Listener for the DOMContentLoaded event (books.xml). 
+    
+    const fileName = "books.xml"; // Variable assigned to the string value of the xml document- books.xml 
+    
+    const getBookData = function () {      
+        return fetch(fileName)         // Uses JavaScripts fetch() API to request the xml document.
         .then(res => res.text())
         .then(data => bookData = data);
     }
-
+    getBookData()
+        .then(() => {
+            parseData();
+            })
+        });
     const parseData = () => {
-	
-        const domParser = new DOMParser();
-        const xmlBooks = domParser.parseFromString(bookData,"text/xml");
+	    
+        const domParser = new DOMParser(); // DOM object.
+        const xmlBooks = domParser.parseFromString(bookData,"text/xml");   // Parses a text string and converts into DOM object.
 
             loadBooks(xmlBooks);
             addIsbnClickEvents();
