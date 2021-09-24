@@ -65,8 +65,8 @@
         });
     const parseData = () => {
 	    
-        const domParser = new DOMParser(); // DOM object.
-        const xmlBooks = domParser.parseFromString(bookData,"text/xml");   // Parses a text string and converts into DOM object.
+        const domParser = new DOMParser(); // New DOMParser object.
+        const xmlBooks = domParser.parseFromString(bookData,"text/xml");   // Converts xml into a DOM tree.
 
             loadBooks(xmlBooks);
             addIsbnClickEvents();
@@ -75,7 +75,7 @@
     const loadBooks = (xmlData) => {
     const books = xmlData.getElementsByTagName("book");
 
-        // The string for the HTML table- header and td. 
+        // The string for the HTML table- header. 
         let tableData = `<table id="bookTable" class="table">
             <thead>
                 <tr>
@@ -87,15 +87,15 @@
                 </tr>
             </th><tbody>`;   
                     
-            for (let book of books){
+            for (let book of books) {
 			
-                const isbn = book.getElementsByTagName("isbn")[0].childNodes[0].nodeValue;
-                const title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-                const description = book.getElementsByTagName("description")[0].childNodes[0].nodeValue;
-                const pages = book.getElementsByTagName("pages")[0].childNodes[0].nodeValue;
-                const authors = book.getElementsByTagName("authors")[0].childNodes[0].nodeValue;
+                let isbn = book.getElementsByTagName("isbn")[0].childNodes[0].nodeValue;
+                let title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+                let description = book.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+                let pages = book.getElementsByTagName("pages")[0].childNodes[0].nodeValue;
+                let authors = book.getElementsByTagName("authors")[0].childNodes[0].nodeValue;
 
-                 // Selected book output section
+                 // String for the selected book output section
                     tableData += `<tr>
                         <td data-value="ISBN"><a href="#" class="isbn-link">${isbn}</a></td>
                         <td data-value="Title">${title}</td>
@@ -107,6 +107,24 @@
             tableData += "</tbody></table>";     // Closing the HTML table string and bind the variable to the bookList div’s innerHTML.
             document.getElementById("bookList").innerHTML = tableData;
     }
+    const anchorClicked = function (e) {         // Creates clickable isbn links.
+        
+        e.preventDefault();
+        
+        const self = e.currentTarget;
+        const cell = self.parentElement;
+        const row = cell.parentElement;
+        const data = row.querySelectorAll("td");
+        
+            let bookData = "<ul style='list-style-type:none'>"; // Start HTML string for an unordered list
+                
+                for (let field of data) {   // bookData iterated and appended to unordered list.
+                    bookData += `<li><b>${field.dataset.value}</b>: ${field.innerText}</li>`;
+                }
+                bookData += "<ul>"; 
+                document.getElementById("selectedBook").innerHTML = bookData; // Binds bookData variable to the selectedBook.innerHTML.
+            }
+             
 </script>
 </body>
 </html>
