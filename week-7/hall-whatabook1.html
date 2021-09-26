@@ -1,7 +1,7 @@
- <!--
+<!--
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 09/15/2021
+    Date: 09/24/2021
     Modified By: Keith Hall
     Description: This is the HTML/Javascript file for web-330 assignment 7.2- What-A-Book App.  
 -->
@@ -40,13 +40,12 @@
 	    <div class="assign-content">
 		    <div class="card">
 			    <div class="card-title">Selected Book</div>
-                <!-- Click results bound here -->
+                <!-- Click results here -->
 			    <div class="card-content" id="selectedBook" class="card-content-text"></div> 
 			</div>
 		</div>
 	</div>
 <script>
-    
     let bookData, xmlData;
     
     window.addEventListener("DOMContentLoaded", function (event) {  // Listener for the DOMContentLoaded event (books.xml). 
@@ -54,28 +53,30 @@
     const fileName = "books.xml"; // Variable assigned to the string value of the xml document- books.xml 
     
     const getBookData = function () {      
-        return fetch(fileName)         // Uses JavaScripts fetch() API to request the xml document.
+        return fetch(fileName)         // Uses JavaScripts fetch() API to access the xml document.
         .then(res => res.text())
         .then(data => bookData = data);
     }
+    // Get() function
     getBookData()
         .then(() => {
             parseData();
             })
         });
+    // Parse and load.
     const parseData = () => {
 	    
-        const domParser = new DOMParser(); // New DOMParser object.
-        const xmlBooks = domParser.parseFromString(bookData,"text/xml");   // Converts xml into a DOM tree.
+        const domParser = new DOMParser(); // Creates an XML DOM parser.
+        const xmlBooks = domParser.parseFromString(bookData,"text/xml");   // Parser creates a new XML DOM object using books.xml-from variable bookData. 
 
             loadBooks(xmlBooks);
             addIsbnClickEvents();
     }
 
     const loadBooks = (xmlData) => {
-    const books = xmlData.getElementsByTagName("book");
+    const books = xmlData.getElementsByTagName("book"); 
 
-        // The string for the HTML table- header. 
+        // Creates the string for the HTML table- header. 
         let tableData = `<table id="bookTable" class="table">
             <thead>
                 <tr>
@@ -123,8 +124,14 @@
                 }
                 bookData += "<ul>"; 
                 document.getElementById("selectedBook").innerHTML = bookData; // Binds bookData variable to the selectedBook.innerHTML.
-            }
-             
+    }
+    const addIsbnClickEvents = () => {
+        const viewButtons = document.querySelectorAll('#bookTable tbody .isbn-link');
+
+        viewButtons.forEach(button => {
+            button.addEventListener('click', anchorClicked);
+        })
+    }
 </script>
 </body>
 </html>
