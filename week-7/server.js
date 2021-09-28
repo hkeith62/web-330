@@ -9,9 +9,9 @@ var path = require("path");
 var http = require("http");
 
 var app = express();
-express.static.mime.define({'application/javascript': ['js']});  // Express middleware function that serves static files such as images, CSS files, and JavaScript.
+express.static.mime.define({'application/javascript': ['js']});   
 
-app.use( '/', express.static( __dirname + '/' ));
+app.use( '/', express.static( __dirname + '/' ));  // Express middleware function that serves static files such as images, CSS files, and JavaScript.
 
 app.get('/', function(request, response){
   response.sendFile(path.join(__dirname + "/hall-whatabook1.html")); // Request handler is called to respond when a request to hall-bobs-auto-repair.html is made.
