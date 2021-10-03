@@ -10,7 +10,7 @@ export class HttpClient {
         url = new URL(url);  
         url.search = new URLSearchParams(params);  
         const res = await fetch(url.toString(), {  
-            method: 'GET'
+            method: 'GET'  // Get method implementation.
         })
         return res.json(); 
     }

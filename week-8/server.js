@@ -1,7 +1,7 @@
 /*  Title: WEB 340 –  Node.js
 ;   Author: Keith Hall
 ;	  Date: 09/18/2021
-;	  Description: This is the server file for the what-a-book1 app. Web 330- assignment 7.2.
+;	  Description: This is the server file for the what-a-book 1 and 2 app. Web 330- assignment 7.2 and 8.2.
 */
 // Call modules to be used in the app
 var express = require("express");  
