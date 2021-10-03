@@ -1,9 +1,9 @@
- <!--
+<!--
     Title: WEB 330 – Enterprise JavaScript II
     Author: Professor Itskovich
-    Date: 09/24/2021
+    Date:10/02/2021
     Modified By: Keith Hall
-    Description: This is the HTML/Javascript file for web-330 assignment 7.2- What-A-Book App.  
+    Description: This is the HTML/Javascript file for web-330 assignment 8.2- What-A-Book App2.  
 -->
 <!DOCTYPE html>
 <html lang="en"> 
@@ -19,17 +19,19 @@
     <!--Style Sheets-->
     <link rel="stylesheet" href="theme.css" />
     <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="hall-whatabook2.css" />
     <!-- Font Awesome and Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;"> 
     <div class="assign-container"> <!-- Card containers-->
-	    <h1 id= "app-header">Welcome to the WhatABook, Part 1 App</h1>
+	    <h1 id= "app-header">Welcome to the WhatABook, Part 2 App</h1>
 	    <div class="assign-content"> 
 		    <div class="card">
 			    <div class="card-title" style="margin-bottom: 6px;">Book Listing</div>
-                <div id="table-container"></div> 
+                                         <!--Hide container-->
+                <div id="bookListing" style="display:none;" class="animate-bottom"></div> 
             </div>
 		    <div id= "return-home-container">
                 <a href= "../index.html" class="return-home">Return</a>
@@ -40,66 +42,95 @@
 	    <div class="assign-content">
 		    <div class="card">
 			    <div class="card-title">Selected Book</div>
-                <!-- Click results here -->
-			    <div class="card-content" id="book-data" class="card-content-text"></div> 
+                <!-- Click results here -->                                        <!--Hide container-->
+			    <div class="card-content" id="selectedBook" class="card-content-text" style="display:none;" class="animate-bottom"></div>
 			</div>
 		</div>
 	</div>
-        <script type="module">
-            import {HttpClient} from './http-client.js'; //a
+    <!--Page load spinners-->
+    <div id="spinners"> 
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+    </div>
 
-            const client = new HttpClient(); // b
-            const URL = 'https://openlibrary.org/api/books';
+<script>
+    function myFunction() {
+        myVar = setTimeout(showPage, 3000); // Hide container 3 seconds to give page a chance to load.
+      }
+      
+      function showPage() { //When page loads, hide spinners and show tables.
+        document.getElementById("spinners").style.display = "none";
+        document.getElementById("bookListing").style.display = "block";
+        document.getElementById("selectedBook").style.display = "block";
+      }
+</script>
+<script type="module">
+    import {HttpClient} from './http-client.js';  
+        var myVar;
 
-            const formatChoice = {
-                TABLE: 'table',
-                LIST: 'list'
-            }
+    const client = new HttpClient(); // Call new http client object. 
+    const URL = "https://openlibrary.org/api/books"; //Open library assigned a variable.
 
-            const isbns = [ //c
-                '0345339681',
-                '0261103571',
-                '9780593099322',
-                '9780261102361',
-                '9780261102378',
-                '9780590302715',
-                '9780316769532',
-                '9780743273565',
-                '9780590405959' 
-            ];
+    const formatChoice = {
+        TABLE: "table",
+        LIST: "list"
+    }
+   //ISBN numbers of resources called from open library.
+    const isbns = [  
+        '0345339681',
+        '0261103571',
+        '9780593099322',
+        '9780261102361',
+        '9780261102378',
+        '9780590302715',
+        '9780316769532',
+        '9780743273565',
+        '9780590405959' 
+    ];
 
-            const params = { //d
-                'bibkeys': `ISBN:${isbns.join(",")}`,
-                'format': 'json',
-                'jscmd': 'details'
-            };
+    const params = { // Params object literal
+        "bibkeys": `ISBN:${isbns.join(",")}`,
+        "format": "json",
+        "jscmd": "details"
+    };
 
-            window.addEventListener('DOMContentLoaded', (event) => {
-                client.get(URL, params) //1
-                .then(res => {
-                    const resKeys = Object.keys(res);
+    window.addEventListener("DOMContentLoaded", (event) => {
+        client.get(URL, params)  // Http get and supply with open library url and params object.
+            .then(res => {
+
+                const resKeys = Object.keys(res);
                     if (resKeys.length > 0){
-                        displayBooks(res);
-                        addIsbnClickEvents();
+                        displayBooks(res);  
+                        addIsbnClickEvents();  
                         return;
                     }
-                    console.log('There are no results, something is wrong');''
+                    console.log("There are no results, something is wrong");''
                 })
-                .catch(e => { 
+                .catch(e => {  
                     console.log(e);
                 })
             });
-
-            const displayBooks = (data) => {             
-                let tableData = `<table id="bookTable" class="table"><tbody>`;
-                
+    // Table header
+    const displayBooks = (data) => {             
+        let tableData = `<table id="bookTable" class="table">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Pages</th>
+                    <th>Authors</th>
+                </tr>
+            </th><tbody>`;
+                // Table data
                 for (let singleBook in data){
                     const thisBook = data[singleBook].details;
                     const isbn = thisBook.isbn_13 && thisBook.isbn_13.length > 0 ? thisBook.isbn_13[0] : 'N/A'; // isbn_13 is an array so we want the 0 position
                     const title = thisBook.title;
-                    const description = thisBook.description && thisBook.description.value ? thisBook.description.value : 'N/A'
-                    const pages = thisBook.number_of_pages;
-                    const authors = thisBook.authors && thisBook.authors.length > 0 ? thisBook.authors.map(x => x.name).join(', ') : 'N/A';
+                    const description = thisBook.subtitle ? thisBook.subtitle : 'N/A'
+                    const pages = thisBook.number_of_pages ? thisBook.number_of_pages : 'N/A'
+                    const authors = thisBook.authors && thisBook.authors.length > 0 ? thisBook.authors.map(x => x.name).join(', ') : '';
 
                     tableData += `<tr>
                             <td data-value="ISBN"><a href="#" class="isbn-link">${isbn}</a></td>
@@ -110,72 +141,82 @@
                         </tr>`;
                 }
 
-                tableData += "</tbody></table>";
-                document.querySelector('#table-container').innerHTML = tableData;
+                tableData += "</;></table>";
+                document.getElementById("bookListing").innerHTML = tableData; //Table string value bound to bookListing div.
             }
 
-            const anchorClicked = (e) => {
-                e.preventDefault();
+    const anchorClicked = (e) => {
+        e.preventDefault();
 
-                const self = e.currentTarget;
-                const isbn = self.innerText; 
+            const self = e.currentTarget;
+            const isbn = self.innerText; 
 
-                const singleBookParams = { 
-                    'bibkeys': `ISBN:${isbn}`,
-                    'format': 'json',
-                    'jscmd': 'details'
-                };
+            const singleBookParams = { 
+                'bibkeys': `ISBN:${isbn}`,
+                'format': 'json',
+                'jscmd': 'details'
+            };
 
-                const format = formatChoice.TABLE;
+            const format = formatChoice.TABLE;
 
-                //get the book data
-                client.get(URL, singleBookParams) //1
+            //get the book data
+            client.get(URL, singleBookParams)  
                 .then(res => {
+
                     const resKeys = Object.keys(res);
-                    if (resKeys.length > 0){       
-                        buildHtmlString(res, format)
-                        return;
+                      if (resKeys.length > 0){       
+                         buildHtmlString(res, format)  
+                         return;
                     }
                     console.log('There are no results from the single book request, something is wrong');''
                 })
-                .catch(e => { 
+                .catch(e => {  
                     console.log(e);
                 })
             }
+           // Build results table  
+    const buildHtmlString = (res, format) => {
+        let ulString = '';
+            let tableString = '';
+                for (let key in res){
+                    ulString = '<ul style="list-style-type: none;">';
+                    tableString = '<table id="resultTable" class="table"><tbody>';
+                    
+                    if (res.hasOwnProperty(key)){
+                        let authors = [];
+                        if (res[key].details.authors){
+                            authors = res[key].details.authors.map(function(author){
+                                return author.name;
+                            });
+                        }
 
-            const buildHtmlString = (res, format) => {
-                let ulString = '<ul>';
-                let tableString = '<table id="resultTable" class="table"><tbody>';
-
-                //get the keys from the results
-                const objKeys = Object.keys(res);                    
-                const firstObj = objKeys[0];
-
-                const thisBook = res[firstObj].details; //get first object details
-                const displayBook = {};
-
-                displayBook.ISBN = thisBook.isbn_13 && thisBook.isbn_13.length > 0 ? thisBook.isbn_13[0] : 'N/A'; // isbn_13 is an array so we want the 0 position
-                displayBook.Title = thisBook.title;
-                displayBook.Description = thisBook.description && thisBook.description.value ? thisBook.description.value : 'N/A'
-                displayBook.Pages = thisBook.number_of_pages;
-                displayBook.Authors = thisBook.authors && thisBook.authors.length > 0 ? thisBook.authors.map(x => x.name).join(', ') : 'N/A';
-                                
-                for (let singleProp in displayBook){
-                    ulString += `<li><b>${singleProp}</b>: ${displayBook[singleProp]}</li>`;
-                    tableString += `<tr><td>${singleProp}</td></td><td>${displayBook[singleProp]}</td></tr>`;
+                        let book = {
+                            isbn: res[key].details.isbn_13 ? res[key].details.isbn_13 : res[key].details.isbn_10,
+                            title: res[key].details.title,
+                            description: res[key].details.subtitle ? res[key].details.subtitle : 'N/A',
+                            pages: res[key].details.number_of_pages ? res[key].details.number_of_pages : 'N/A',
+                            authors: authors.join(',')
+                        }
+                        // Build results table string
+                        for (let singleProp in book){
+                            ulString += `<li><b>${singleProp}:</b> ${book[singleProp]}</li>`;
+                            tableString += `<tr><td>${singleProp}</td></td><td>${book[singleProp]}</td></tr>`;
+                        }
+                    }
                 }
+
                 ulString += '<ul>';
-                tableString += '</tbody></table>';
-                document.querySelector('#book-data').innerHTML = format === formatChoice.TABLE ? tableString : ulString;                
+                tableString += '</tbody></table>'; 
+                document.getElementById("selectedBook").innerHTML = format === formatChoice.TABLE ? tableString : ulString;  //g5
             }
 
-            const addIsbnClickEvents = () => {
-                const viewButtons = document.querySelectorAll('#bookTable tbody .isbn-link');
+    const addIsbnClickEvents = () => {  // ISBN click
+        const viewButtons = document.querySelectorAll('#bookTable tbody .isbn-link');
 
-                viewButtons.forEach(button => {
-                    button.addEventListener('click', anchorClicked);
-                })
-            }
-        </script>
-    </body>
+            viewButtons.forEach(button => {
+                button.addEventListener('click', anchorClicked);
+            })
+        }
+</script>
+</body>
 </html>

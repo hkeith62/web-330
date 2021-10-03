@@ -1,0 +1,38 @@
+/**
+    Title: WEB 330 – Enterprise JavaScript II
+    Author: Professor Itskovich
+    Date: 09/15/2021
+    Modified By: Keith Hall 
+    Description: This is the css style sheet for web-330 assignment 8.2- whatabook2.  
+*/
+
+/* Page loaders */
+
+.loader {
+     /* Styling */
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #4F3674;
+    border-bottom:8px solid #4F3674;
+    border-right: 8px solid #D6A800;
+    width: 30px;
+    height:30px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite; /* Spinner rotation speed*/
+    float: left;
+    margin: 50px;
+    align-content: center;
+  }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Spinners */
+  #spinners {
+      margin-left: 474px;
+  }
+  
