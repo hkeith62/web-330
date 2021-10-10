@@ -5,7 +5,6 @@
     Modified By: Professor  P. Itskovich, Keith Hall 
     Description: This is the style sheet for the what-a-book1 & 2 app. Web-330 assignment 7.2 and 8.2.   
 */
-
 /* Main content containers */
 .assign-content {
     width: 82%;
@@ -52,7 +51,7 @@
 .form-field {
 	padding: 14px;
 }
-/* Book table styling. */
+/* Book table styles. */
 .table {
     border-collapse: collapse;
     width: 100%;
