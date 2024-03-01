@@ -24,22 +24,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet" />
 </head>
-<body onload="myFunction()" style="margin:0;"> 
+<body onload="myFunction()" style="margin:0;">
+<div class="row">
     <div class="assign-container"> <!-- Card containers-->
-	    <h1 id= "app-header">Welcome to the WhatABook, Part 2 App</h1>
-	    <div class="assign-content"> 
+        <h1 id= "app-header">WhatABook App</h1>
+         <div id= "return-home-container">
+                <a href= "../index.html" class="return-home">Return</a>
+            </div>
+	    <div class="assign-content-one"> 
 		    <div class="card">
 			    <div class="card-title" style="margin-bottom: 6px;">Book Listing</div>
                                          <!--Hide container-->
                 <div id="bookListing" style="display:none;" class="animate-bottom"></div> 
             </div>
-		    <div id= "return-home-container">
-                <a href= "../index.html" class="return-home">Return</a>
-            </div> 
 		</div>
     </div>      
     <div class="assign-container" id="results">
-	    <div class="assign-content">
+	    <div class="assign-content-two">
 		    <div class="card">
 			    <div class="card-title">Selected Book</div>
                 <!-- Click results here -->                                        <!--Hide container-->
@@ -47,6 +48,7 @@
 			</div>
 		</div>
 	</div>
+</div>
     <!--Page load spinners-->
     <div id="spinners"> 
     <div class="loader"></div>
@@ -56,7 +58,7 @@
 
 <script>
     function myFunction() {
-        myVar = setTimeout(showPage, 3000); // Hide container 3 seconds to give page a chance to load.
+        myVar = setTimeout(showPage, 2000); // Hide container 2 seconds to give page a chance to load.
       }
       
       function showPage() { //When page loads, hide spinners and show tables.

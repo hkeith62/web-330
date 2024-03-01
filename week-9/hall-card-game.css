@@ -1,0 +1,86 @@
+
+/*
+    Title: WEB 231 – Enterprise JavaScript I
+    Author: Professor Krasso
+    Date: 02/28/2024
+    Modified By: Keith Hall
+    Description: This is the CSS page for web-231 assignment 9, Card Game.
+*/
+body {
+    font-family: 'Oswald', sans-serif;
+}
+button {
+    background-color: #4F3674;
+    color: #fff;
+    width:5%;
+}
+#btnDealCards {
+	width: 26.0%;
+	padding: 16px;  
+	background-color: #4F3674;
+    color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	margin: -10px 10px 10px 25px;
+	border-radius: 4px;
+}
+#btnDealCards:hover {
+	background-color: #D6A800;
+    color: #4F3674;
+}
+.btn:hover {
+    color: #fff;
+}
+.box-shadow-top {
+     
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-top:-22px;
+}
+.box-shadow {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.text-purple {
+    color: #4F3674
+}
+.background-purple {
+    font-weight: 100;
+    color: #fff;
+    background-color: #4F3674;
+}
+#player-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 900px;
+}
+#player-card-container .playing-card {
+    flex: 1 1 190px;
+    margin: 10px;
+    padding: 0px 10px 10px 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    display: flex;
+    align-items: center;
+    min-height: 170px;
+    width: 100%;
+}
+.playing-card .card-title {
+    max-width: 50%;
+    align-self: flex-start;
+    text-align: left;
+    font-size: 26px;
+}
+.playing-card .card-type {
+    align-self: center;
+    width: 100%;
+    margin-right: 15px;
+}
+.iconify {
+    font-size: 50px;
+}
+#return-home-container {
+    margin-top:-20px;
+}
+.return-home {
+    text-decoration: none;
+    margin-top:-20px;
+}

@@ -1,0 +1,54 @@
+/**
+    Title: WEB 231 – Enterprise JavaScript I
+    Author: Professor Krasso
+    Date: 05/30/2021
+    Modified By: Keith Hall
+    Description: This is the css style sheet for web-231 assignment 4, number game app. 
+*/
+.app-header {
+	text-align: center;
+}
+p  {
+	clear: left;
+	text-align: center;
+	font-size: 28px;
+	margin-top: 0;
+}
+.return-home {
+	margin-left: 270px;  
+}
+.card {
+	margin: auto;
+}
+/* Container for results button */
+.card-title {
+ 	padding: 54px 0 6px 0;
+}
+/* Imput field styling */
+#txtMyNumber  {
+	padding: 12px 32px;
+    margin: 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.form-feild {
+	margin-left: 128px;
+}
+/* Submit button styling */
+#btnSubmit {
+	width: 45%;
+	padding: 16px;  
+	background-color: #4F3674;
+    color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	margin-left: 108px;
+	border-radius: 4px;
+}
+#btnSubmit:hover {
+	background-color: #D6A800;
+    color: #4F3674;
+}
+ 

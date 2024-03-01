@@ -5,6 +5,13 @@
     Modified By: Professor  P. Itskovich, Keith Hall 
     Description: This is the global style sheet for web-330 assignments and upcoming projects.   
 */
+button {
+    background-color: #4F3674;
+    color: #fff;
+    width:5%;
+    margin-left: 15%;
+    cursor: pointer;
+}
 #container {
     margin: 50px 100px 0;
 	padding-top: 15px; /* Use padding-top to position the toggle switch and text against the container. */
@@ -25,7 +32,7 @@
 }
 .assign-content {
     width: 85%;
-    margin: 3% auto 0;
+    margin: -20px auto 0;
 	margin-left: 315px;
 }
 .assign-results-text {

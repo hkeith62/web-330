@@ -1,0 +1,142 @@
+<!--
+    Title: WEB 330– Enterprise JavaScript II
+    Author: Professor Krasso
+    Date: 09/08/2021
+    Modified By: Professor  P. Itskovich, Keith Hall
+    Description: This is the main html page for web-330 assignment 5.2
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+    <meta
+      name="keywords"
+      content="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+    <meta name="robots" content="nofollow" />
+    <meta name="author" content="Keith Hall" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="hall-bobs-auto-repair.css" />
+    <!-- Google fonts for Oswald -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css" />
+    <script type="application/javascript" src="../theme.js"></script>
+    <script></script>
+  </head>
+
+  <body class="light-theme" id="dark-theme">
+    <!-- This is the card container. -->
+    <div class="assign-container">
+      <h1 id="app-header" style="font-size: 39.81px">
+        Temperature Conversion App!
+      </h1>
+       <button onClick="window.location.reload();">Reset</button>
+      <!-- This is a card content container. -->
+      <div class="assign-content">
+        <!-- The card with its' title and content -->
+        <div class="card">
+          <div class="card-title">Fahrenheit To Celcius Converter</div>
+          <cart-component style="width: 100px; margin: 0 auto; display: block"></cart-component>
+          <div class="card-content">
+              <div class="form">
+                  <div class="form-field">
+                      <label for="txtFahrenheit">Fahrenheit Value:</label>
+                      <input type="text" id="txtFahrenheit" name="txtFahrenheit" value="80" />
+                  </div>
+                  <div class="form-field">
+                      <!-- HTML for styling the conversion button and onclick event. -->
+                      <button type="submit" class="btn btn-primary full-width" onclick="myFunction()">Convert Temperature</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <div id="return-home-container">
+      <a href="../index.html" class="return-home">Return</a>
+    </div>
+    <!-- This is the results card container. -->
+    <div class="assign-container" id="search-results">
+      <!-- This is the results card content container. -->
+
+      <div class="assign-content">
+        <!-- The card with its' title and content -->
+        <div class="card">
+          <div class="card-title">Conversion Results</div>
+          <!-- The expected card results -->
+          <div class="card-content assign-results-text">
+            <div id="shoppingCart-table">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./cart-component.js"></script>
+    <script type="module">
+      // Imported modules
+      import { Product } from "./product.js";
+      import { ShoppingCart } from "./shopping-cart.js";
+
+      const resultsContainer = document.getElementById("search-results");
+      resultsContainer.style.display = "none"; //hides the container
+
+      const myShoppingCart = new ShoppingCart();
+	  document.getElementById("cart-count").innerHTML = myShoppingCart.countProduct();  
+      console.log(myShoppingCart.countProduct(), "count");
+
+	  let cartDisplayTable = '';
+
+      function addProduct() {
+        const productList = document.getElementById("productList");
+        // // Captures the value and text of select list options and assigns them to variables.
+        const product = productList.options[productList.selectedIndex].text;
+        const productValue =
+          productList.options[productList.selectedIndex].value;
+        if (product !== "--Select--") {             //Compare the product variable against the string value “—Select--". If they do not match, call the ShoppingCart add function and pass-in a new Product object. 
+          alert(product + " was added to your shopping cart!");
+          myShoppingCart.addProduct(new Product(product,productValue));
+          document.getElementById("cart-count").innerHTML = myShoppingCart.countProduct();
+		  productList.value = 'select';           // Find the productList div and set option value to “select”
+
+        }
+      }
+      document
+        .getElementById("btnAddProduct")
+        .addEventListener("click", addProduct);
+
+      function displayCart() {
+        cartDisplayTable = '<table id="shopping-cart"><thead id="shoppingCart"><tr><th>ID</th><th>Name</th><th>Price</th></tr></thead>';
+		cartDisplayTable += '<tbody id="shoppingCart">';
+		for (let n of myShoppingCart.getNextProduct()){                                         // Binds table values and displays.
+			cartDisplayTable += `<tr><td>${n.id}</td><td>${n.name}</td><td>${n.price}</td></tr>`;
+		}
+    	cartDisplayTable += '</tbody></table>';
+		document.querySelector('#shoppingCart-table').innerHTML = cartDisplayTable;
+		resultsContainer.style.display = "block";        //Displays the results container on click event.
+      }
+
+      document
+        .getElementById("cartIcon")
+        .addEventListener("click", displayCart);
+
+      // countProduct() from shoppingCart object called inside setCartCount()-bind result to cart-count div.
+
+      // Onclick event.
+    </script>
+  </body>
+</html>
